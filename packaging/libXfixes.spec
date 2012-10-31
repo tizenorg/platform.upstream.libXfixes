@@ -21,7 +21,6 @@ Summary:        Development files for %{name}
 Group:          Development/Libraries
 Requires:       %{name} = %{version}
 Requires:       pkgconfig
-Provides:       libxfixes-devel
 
 %description devel
 libXfixes development package
@@ -30,17 +29,12 @@ libXfixes development package
 %setup -q
 
 %build
-%reconfigure --disable-static \
+%configure --disable-static \
            LDFLAGS="${LDFLAGS} -Wl,--hash-style=both -Wl,--as-needed"
 make %{?_smp_mflags}
 
 %install
-
-make install DESTDIR=%{buildroot} INSTALL="install -p"
-
-# We intentionally don't ship *.la files
-rm -f %{buildroot}%{_libdir}/*.la
-
+%make_install
 %remove_docs
 
 %post -p /sbin/ldconfig
@@ -48,7 +42,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING README ChangeLog
+%doc COPYING
 %{_libdir}/libXfixes.so.3
 %{_libdir}/libXfixes.so.3.1.0
 
