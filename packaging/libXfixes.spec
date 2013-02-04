@@ -5,7 +5,6 @@ License:        MIT
 Summary:        X Fixes library
 Url:            http://www.x.org
 Group:          System Environment/Libraries
-
 Source:         %{name}-%{version}.tar.bz2
 
 BuildRequires:  pkgconfig(fixesproto)
@@ -29,8 +28,7 @@ libXfixes development package
 %setup -q
 
 %build
-%configure --disable-static \
-           LDFLAGS="${LDFLAGS} -Wl,--hash-style=both -Wl,--as-needed"
+%configure --disable-static 
 make %{?_smp_mflags}
 
 %install
@@ -38,11 +36,12 @@ make %{?_smp_mflags}
 %remove_docs
 
 %post -p /sbin/ldconfig
+
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING
+%license COPYING
 %{_libdir}/libXfixes.so.3
 %{_libdir}/libXfixes.so.3.1.0
 
@@ -51,4 +50,3 @@ make %{?_smp_mflags}
 %{_includedir}/X11/extensions/Xfixes.h
 %{_libdir}/libXfixes.so
 %{_libdir}/pkgconfig/xfixes.pc
-#%{_mandir}/man3/Xfixes.3
