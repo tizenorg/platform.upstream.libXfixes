@@ -4,7 +4,7 @@ Release:        2
 License:        MIT
 Summary:        X Fixes library
 Url:            http://www.x.org
-Group:          System Environment/Libraries
+Group:          Graphics/X Window System
 Source:         %{name}-%{version}.tar.bz2
 
 BuildRequires:  pkgconfig(fixesproto)
