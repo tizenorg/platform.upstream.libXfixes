@@ -338,7 +338,7 @@ XFixesFetchRegionAndBounds (Display	    *dpy,
     rects = Xmalloc (nrects * sizeof (XRectangle));
     if (!rects)
     {
-	_XEatData (dpy, nbytes);
+	_XEatDataWords(dpy, rep.length);
 	UnlockDisplay (dpy);
 	SyncHandle ();
 	return NULL;

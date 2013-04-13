@@ -113,7 +113,7 @@ XFixesGetCursorImage (Display *dpy)
     image = (XFixesCursorImage *) Xmalloc (rlength);
     if (!image)
     {
-	_XEatData (dpy, nbytes);
+	_XEatDataWords(dpy, rep.length);
 	UnlockDisplay (dpy);
 	SyncHandle ();
 	return NULL;
@@ -191,7 +191,7 @@ XFixesGetCursorName (Display *dpy, Cursor cursor, Atom *atom)
 	_XReadPad(dpy, name, (long)rep.nbytes);
 	name[rep.nbytes] = '\0';
     } else {
-	_XEatData(dpy, (unsigned long) (rep.nbytes + 3) & ~3);
+	_XEatDataWords(dpy, rep.length);
 	name = (char *) NULL;
     }
     UnlockDisplay(dpy);
