@@ -6,6 +6,7 @@ Summary:        X Fixes library
 Url:            http://www.x.org
 Group:          Graphics/X Window System
 Source:         %{name}-%{version}.tar.bz2
+Source1001: 	libXfixes.manifest
 
 BuildRequires:  pkgconfig(fixesproto)
 BuildRequires:  pkgconfig(xext)
@@ -26,6 +27,7 @@ libXfixes development package
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --disable-static 
@@ -40,12 +42,14 @@ make %{?_smp_mflags}
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %license COPYING
 %{_libdir}/libXfixes.so.3
 %{_libdir}/libXfixes.so.3.1.0
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_includedir}/X11/extensions/Xfixes.h
 %{_libdir}/libXfixes.so
