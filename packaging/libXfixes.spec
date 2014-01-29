@@ -1,3 +1,5 @@
+%bcond_with x
+
 Name:           libXfixes
 Version:        5.0
 Release:        2
@@ -12,6 +14,10 @@ BuildRequires:  pkgconfig(fixesproto)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xorg-macros)
 BuildRequires:  pkgconfig(xproto)
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 X Fixes library.
@@ -30,7 +36,7 @@ libXfixes development package
 cp %{SOURCE1001} .
 
 %build
-%configure --disable-static 
+%configure --disable-static
 make %{?_smp_mflags}
 
 %install
