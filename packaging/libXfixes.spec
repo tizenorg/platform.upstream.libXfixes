@@ -1,7 +1,7 @@
 %bcond_with x
 
 Name:           libXfixes
-Version:        5.0
+Version:        5.0.1
 Release:        2
 License:        MIT
 Summary:        X Fixes library
@@ -36,7 +36,7 @@ libXfixes development package
 cp %{SOURCE1001} .
 
 %build
-%configure --disable-static
+%autogen --disable-static
 make %{?_smp_mflags}
 
 %install
